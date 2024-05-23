@@ -1,0 +1,58 @@
+---
+import ReactApp from "@/App";
+import "@/global.scss";
+import { serviceTitle } from "@/meta";
+
+interface Props {
+	title: string | undefined;
+	description?: string;
+	ogType?: string;
+	ogImage?: string;
+	notFound?: boolean;
+}
+
+const {
+	title,
+	description = "夢日記です。AIがあなたの夢をイラストにしてくれます。",
+	ogType = "article",
+	ogImage = `${Astro.site}default-ogp.png`,
+	notFound = false
+} = Astro.props;
+
+const path = Astro.url.pathname.replace(/^\//, "").replace(/\.html$/, "");
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	name: serviceTitle,
+	url: Astro.site
+};
+---
+
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+		<meta name="format-detection" content="email=no,telephone=no,address=no" />
+		<meta name="author" content="彩季" />
+		<meta name="generator" content={Astro.generator} />
+		<meta property="og:url" content={`${Astro.site}${path}`} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:title" content={title ?? serviceTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content={serviceTitle} />
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@Akime_Aki" />
+		<link rel="icon" href={`${import.meta.env.DEV ? "/" : Astro.site}favicon.ico`} />
+		<link rel="sitemap" href={`${import.meta.env.DEV ? "/" : Astro.site}sitemap-index.xml`} />
+		<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+		<title>{title ?? serviceTitle}</title>
+		{!notFound && <link rel="canonical" href={`${import.meta.env.DEV ? "/" : Astro.site}${path}`} />}
+	</head>
+	<body>
+		<ReactApp client:only="react" />
+	</body>
+</html>
