@@ -1,8 +1,22 @@
 /** @jsxImportSource @emotion/react */
 
+import { getUser } from "@/libs/firebase";
 import { css } from "@emotion/react";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function (): JSX.Element {
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		void (async () => {
+			const user = await getUser();
+			if (user !== null) {
+				navigate("/home");
+			}
+		})();
+	}, []);
+
 	return (
 		<div
 			css={css`
@@ -20,6 +34,7 @@ export default function (): JSX.Element {
 				`}
 			>
 				<p>トップページ</p>
+				<Link to="/home">ホームへ</Link>
 			</div>
 		</div>
 	);

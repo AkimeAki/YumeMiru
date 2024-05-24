@@ -5,5 +5,7 @@
 	"ignorePatterns": ["dist"],
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["react-refresh"],
-	"rules": {}
+	"rules": {
+		"react-hooks/exhaustive-deps": "off"
+	}
 }

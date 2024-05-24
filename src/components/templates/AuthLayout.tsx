@@ -1,13 +1,17 @@
 /** @jsxImportSource @emotion/react */
 
-import HomeLayout from "@/components/templates/HomeLayout";
+import MainLayout from "@/components/templates/MainLayout";
 import { UserContext } from "@/context";
 import { getUser } from "@/libs/firebase";
 import { css } from "@emotion/react";
 import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function (): JSX.Element {
+interface Props {
+	children: React.ReactNode;
+}
+
+export default function ({ children }: Props): JSX.Element {
 	const { user, setUser } = useContext(UserContext);
 	const navigate = useNavigate();
 
@@ -19,22 +23,23 @@ export default function (): JSX.Element {
 	}, []);
 
 	useEffect(() => {
-		if (user === null) {
-			navigate("/login");
+		if (user !== null) {
+			navigate("/home");
 		}
 	}, [user]);
 
 	return (
-		<HomeLayout>
+		<MainLayout>
 			<div
 				css={css`
-					display: flex;
-					flex-direction: column;
-					gap: 10px;
+					width: 100%;
+					max-width: 500px;
+					margin: 0 auto;
+					padding: 100px 0;
 				`}
 			>
-				<div></div>
+				{children}
 			</div>
-		</HomeLayout>
+		</MainLayout>
 	);
 }
