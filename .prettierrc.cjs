@@ -4,14 +4,8 @@ module.exports = {
 	printWidth: 120,
 	semi: true,
 	trailingComma: "none",
-	plugins: ["prettier-plugin-astro"],
+	plugins: [],
 	overrides: [
-		{
-			files: "*.astro",
-			options: {
-				parser: "astro"
-			}
-		},
 		{
 			files: "*.code-workspace",
 			options: {
