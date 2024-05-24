@@ -5,7 +5,7 @@ import { UserContext } from "@/context";
 import { getUser } from "@/libs/firebase";
 import { css } from "@emotion/react";
 import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function (): JSX.Element {
 	const { user, setUser } = useContext(UserContext);
