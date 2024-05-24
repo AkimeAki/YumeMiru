@@ -16,7 +16,7 @@
 	overflow-wrap: break-word;
 	word-break: break-word;
 	border: none;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent;
 }
 
 *:focus {
@@ -31,7 +31,8 @@ body {
 }
 
 body {
-	background-color: #f3eee5;
+	background: #fe7484;
+	background: linear-gradient(0deg, #fe7484 0%, #c9fe74 100%);
 }
 
 ul,
