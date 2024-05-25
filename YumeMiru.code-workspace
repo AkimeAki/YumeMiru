@@ -6,7 +6,6 @@
 		}
 	],
 	"settings": {
-		"prettier.documentSelectors": ["**/*.astro"],
 		"npm.packageManager": "npm",
 		"eslint.workingDirectories": ["./"],
 		"[json]": {
@@ -64,11 +63,6 @@
 		}
 	},
 	"extensions": {
-		"recommendations": [
-			"astro-build.astro-vscode",
-			"dbaeumer.vscode-eslint",
-			"esbenp.prettier-vscode",
-			"EditorConfig.EditorConfig"
-		]
+		"recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode", "EditorConfig.EditorConfig"]
 	}
 }
