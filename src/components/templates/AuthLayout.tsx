@@ -2,7 +2,6 @@
 
 import MainLayout from "@/components/templates/MainLayout";
 import { UserContext } from "@/context";
-import { getUser } from "@/libs/firebase";
 import { css } from "@emotion/react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,21 +11,14 @@ interface Props {
 }
 
 export default function ({ children }: Props): JSX.Element {
-	const { user, setUser } = useContext(UserContext);
+	const { userStatus } = useContext(UserContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		void (async () => {
-			const user = await getUser();
-			setUser(user);
-		})();
-	}, []);
-
-	useEffect(() => {
-		if (user !== null) {
+		if (userStatus === "authenticated") {
 			navigate("/home");
 		}
-	}, [user]);
+	}, [userStatus]);
 
 	return (
 		<MainLayout>
